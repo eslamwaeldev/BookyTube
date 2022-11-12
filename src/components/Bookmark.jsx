@@ -25,7 +25,6 @@ export default function Bookmark(props) {
         timeStamp={props.timeStamp}
       >
         <p className="text-gray-900 text-sm font-medium">{props.desc}</p>
-        {/* <p className="text-gray-900 text-sm font-medium"></p> */}
         <div className="flex justify-end gap-2 absolute right-2">
           <button className="w-7 flex justify-center items-center" onClick={onPlay}>
             <img src="../public/assets/play.png"></img>
