@@ -43,6 +43,11 @@
       bookmarkBtn.src = chrome.runtime.getURL("assets/bookmark.png");
       bookmarkBtn.className = "ytp-button " + "bookmark-btn";
       bookmarkBtn.title = "Click to bookmark current timestamp";
+      bookmarkBtn.style.width = "3rem";
+      bookmarkBtn.style.height = "3rem";
+      bookmarkBtn.style.marginBottom = "auto";
+      bookmarkBtn.style.marginTop = "auto";
+      bookmarkBtn.style.marginLeft = "auto";
 
       youtubeLeftControls = document.getElementsByClassName("ytp-left-controls")[0];
       youtubePlayer = document.getElementsByClassName("video-stream")[0];
