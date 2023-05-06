@@ -36,14 +36,16 @@ function App() {
       </div>
     ) : (
       <div className="flex flex-col justify-center items-center text-center h-full w-full">
-        <h2 className="text-xl text-gray-900 font-bold italic ">There are no bookmarks added for this video</h2>
+        <h2 className="text-xl text-gray-900 font-bold italic ">
+          There are no bookmarks added for this video
+        </h2>
       </div>
     )
   ) : (
     <>
       <div className="flex flex-col justify-center items-center p-5">
         <h2 className="text-xl text-gray-900 font-bold "> This is not a youtube page !</h2>
-        <img src="../public/assets/sadFace.png" alt="sad face" className="h-44 w-44" />
+        <img src="/assets/sadFace.png" alt="sad face" className="h-44 w-44" />
       </div>
     </>
   );
