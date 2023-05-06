@@ -27,10 +27,10 @@ export default function Bookmark(props) {
         <p className="text-gray-900 text-sm font-medium">{props.desc}</p>
         <div className="flex justify-end gap-2 absolute right-2">
           <button className="w-7 flex justify-center items-center" onClick={onPlay}>
-            <img src="../public/assets/play.png"></img>
+            <img src="/assets/play.png"></img>
           </button>
           <button className="w-5 flex justify-center items-center" onClick={onDelete}>
-            <img src="../public/assets/delete.png"></img>
+            <img src="/assets/delete.png"></img>
           </button>
         </div>
       </div>
