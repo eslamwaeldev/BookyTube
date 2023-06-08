@@ -1,17 +1,18 @@
+import { v4 as uuidv4 } from "uuid";
 (() => {
   let youtubeLeftControls, youtubePlayer;
   let currentVideo = new URLSearchParams(window.location.href.split("?")[1]).get("v");
   let currentVideoBookmarks = [];
 
   chrome.runtime.onMessage.addListener((obj, sender, response) => {
-    const { type, value, videoId } = obj;
+    const { type, value, videoId, id } = obj;
     if (type === "NEW") {
       currentVideo = videoId;
       newVideoLoaded();
     } else if (type === "PLAY") {
       youtubePlayer.currentTime = value;
     } else if (type === "DELETE") {
-      currentVideoBookmarks = currentVideoBookmarks.filter((bookmark) => bookmark.time != value);
+      currentVideoBookmarks = currentVideoBookmarks.filter((bookmark) => bookmark.id !== value);
       chrome.storage.sync.remove([currentVideo]);
       if (currentVideoBookmarks.length > 0) {
         chrome.storage.sync.set({
@@ -59,9 +60,12 @@
 
   const addNewBookmarkEventHandler = async () => {
     const currentTime = youtubePlayer.currentTime;
+    const bookmarkID = uuidv4();
+    console.log(typeof bookmarkID);
     const newBookmark = {
       time: currentTime,
       desc: "Bookmark at " + getTime(currentTime),
+      id: bookmarkID,
     };
 
     currentVideoBookmarks = await fetchBookmarks();
