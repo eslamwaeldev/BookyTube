@@ -14,17 +14,17 @@ export default function Bookmark(props) {
     const bookmarkTime = timeStamp;
     chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
       var activeTab = tabs[0];
-      chrome.tabs.sendMessage(activeTab.id, { type: "DELETE", value: bookmarkTime });
+      chrome.tabs.sendMessage(activeTab.id, { type: "DELETE", value: props.id });
     });
   };
 
   return (
     <>
       <div
-        className="border-l-4 border-y-2 border-r-2  rounded-md gap-7 border-red-500 flex flex-row h-3/4 p-3 items-center  relative"
+        className="border-l-4 border-y-2 border-r-2  rounded-md gap-7 border-red-500  flex flex-row h-3/4 p-3 items-center  relative text-gray-900 dark:text-gray-50"
         timeStamp={props.timeStamp}
       >
-        <p className="text-gray-900 text-sm font-medium">{props.desc}</p>
+        <p className=" text-sm font-medium">{props.desc}</p>
         <div className="flex justify-end gap-2 absolute right-2">
           <button className="w-7 flex justify-center items-center" onClick={onPlay}>
             <img src="/assets/play.png"></img>
