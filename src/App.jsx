@@ -7,27 +7,28 @@ function App() {
   const [bookmarks, setBookmarks] = useState([]);
   const [videoTab, setVideoTab] = useState(false);
   const [isYoutube, setIsYoutube] = useState(false);
-  useEffect(() => {
-    const findTab = async () => {
-      const currentTab = await getCurrentTab();
-      const currentUrl = currentTab.url;
-      const queryParameters = currentUrl.split("?")[1];
-      const urlParam = new URLSearchParams(queryParameters);
-      const currentVideo = urlParam.get("v");
-      if (currentUrl.includes("www.youtube.com")) {
-        setIsYoutube(true);
-        if (currentVideo) {
-          setVideoTab(true);
-          chrome.storage.sync.get([currentVideo], (result) => {
-            setBookmarks(result[currentVideo] ? JSON.parse(result[currentVideo]) : []);
-          });
-        }
-      } else {
-        setIsYoutube(false);
+  const findTab = async () => {
+    const currentTab = await getCurrentTab();
+    const currentUrl = currentTab.url;
+    const queryParameters = currentUrl.split("?")[1];
+    const urlParam = new URLSearchParams(queryParameters);
+    const currentVideo = urlParam.get("v");
+    if (currentUrl.includes("www.youtube.com")) {
+      setIsYoutube(true);
+      if (currentVideo) {
+        setVideoTab(true);
+        chrome.storage.sync.get([currentVideo], (result) => {
+          setBookmarks(result[currentVideo] ? JSON.parse(result[currentVideo]) : []);
+        });
       }
-    };
+    } else {
+      setIsYoutube(false);
+    }
+  };
+
+  useEffect(() => {
     findTab();
-  });
+  }, [findTab]);
   return isYoutube ? (
     videoTab ? (
       bookmarks.length > 0 ? (
