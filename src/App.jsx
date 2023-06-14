@@ -32,7 +32,7 @@ function App() {
   return isYoutube ? (
     videoTab ? (
       bookmarks.length > 0 ? (
-        <div className="flex flex-col items-center p-4 w-full text-gray-900 dark:text-gray-50">
+        <div className="flex flex-col items-center p-4 w-full h-full dark:bg-gray-800 text-gray-900 dark:text-gray-50">
           <h2 className="text-xl  font-bold">Your Bookmarks for this video</h2>
           <div className="grid grid-cols-1 gap-y-[0.2rem] p-4 w-full">
             {bookmarks.map((bookmark, index) => {
@@ -48,14 +48,14 @@ function App() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center text-center h-full w-full text-gray-900 dark:text-gray-50 p-4 ">
+        <div className="flex flex-col justify-center items-center text-center h-full w-full dark:bg-gray-800 text-gray-900 dark:text-gray-50 p-4 ">
           <h2 className="text-xl  font-bold italic ">
             There are no bookmarks added for this video
           </h2>
         </div>
       )
     ) : (
-      <div className="flex flex-col justify-center items-center text-center h-full w-full text-gray-900 dark:text-gray-50">
+      <div className="flex flex-col justify-center items-center text-center h-full w-full dark:bg-gray-800 text-gray-900 dark:text-gray-50">
         <h2 className="text-xl  font-bold italic ">Open a Video to load it's bookmarks</h2>
       </div>
     )
