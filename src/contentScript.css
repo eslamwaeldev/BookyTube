@@ -1,0 +1,8 @@
+.bookmark-btn-img {
+  width: 33px !important;
+  margin-bottom: 5px !important;
+  filter: grayscale(100%);
+}
+.bookmark-btn-img:hover {
+  filter: grayscale(0);
+}
