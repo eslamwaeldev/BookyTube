@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import "./src/index.css";
+import "./src/contentScript.css";
 
 let youtubeRightControls, youtubePlayer;
 let currentVideo = new URLSearchParams(window.location.href.split("?")[1]).get("v");
@@ -13,14 +13,7 @@ chrome.runtime.onMessage.addListener((obj, sender, response) => {
   } else if (type === "PLAY") {
     youtubePlayer.currentTime = value;
   } else if (type === "DELETE") {
-    currentVideoBookmarks.forEach((entry) => {
-      if (entry.id === value) {
-        console.log(true);
-      }
-    });
-    console.log(currentVideoBookmarks.length);
     currentVideoBookmarks = currentVideoBookmarks.filter((bookmark) => bookmark.id !== value);
-    console.log(currentVideoBookmarks.length);
     chrome.storage.sync.remove([currentVideo]);
     if (currentVideoBookmarks.length > 0) {
       chrome.storage.sync.set({
@@ -34,39 +27,42 @@ chrome.runtime.onMessage.addListener((obj, sender, response) => {
 });
 
 const fetchBookmarks = () => {
-  return new Promise((resolve) => {
-    chrome.storage.sync.get([currentVideo], (result) => {
-      if (result) {
-        resolve(result[currentVideo] ? JSON.parse(result[currentVideo]) : []);
-      }
+  if (currentVideo) {
+    return new Promise((resolve) => {
+      chrome.storage.sync.get([currentVideo], (result) => {
+        if (result) {
+          resolve(result[currentVideo] ? JSON.parse(result[currentVideo]) : []);
+        } else {
+          return [];
+        }
+      });
     });
-  });
+  } else return [];
 };
 
 const newVideoLoaded = async () => {
-  const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0];
+  const bookmarkBtnExists = document.getElementById("BookyTube-btn");
   currentVideoBookmarks = await fetchBookmarks();
-
   if (!bookmarkBtnExists) {
     const bookmarkBtn = document.createElement("button");
     const bookmarkBtnImg = document.createElement("img");
     bookmarkBtnImg.className = "bookmark-btn-img";
     bookmarkBtnImg.src = chrome.runtime.getURL("assets/bookmark.png");
+    bookmarkBtn.id = "BookyTube-btn";
     bookmarkBtn.className = "ytp-button " + "bookmark-btn";
     bookmarkBtnImg.title = "Click to bookmark current timestamp";
     bookmarkBtn.append(bookmarkBtnImg);
     youtubeRightControls = document.getElementsByClassName("ytp-right-controls")[0];
     youtubePlayer = document.getElementsByClassName("video-stream")[0];
-
     youtubeRightControls.append(bookmarkBtn);
     bookmarkBtn.addEventListener("click", addNewBookmarkEventHandler);
   }
 };
 
 const addNewBookmarkEventHandler = async () => {
+  currentVideo = new URLSearchParams(window.location.href.split("?")[1]).get("v");
   const currentTime = youtubePlayer.currentTime;
   const bookmarkID = uuidv4();
-  console.log(typeof bookmarkID);
   const newBookmark = {
     time: currentTime,
     desc: "Bookmark at " + getTime(currentTime),
@@ -81,13 +77,8 @@ const addNewBookmarkEventHandler = async () => {
     ),
   });
   currentVideoBookmarks = await fetchBookmarks();
+  console.log(currentVideoBookmarks);
 };
-
-window.addEventListener("load", () => {
-  if (currentVideo) {
-    newVideoLoaded();
-  }
-});
 
 newVideoLoaded();
 
