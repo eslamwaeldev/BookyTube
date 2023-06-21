@@ -18,7 +18,7 @@ export default function Bookmark(props) {
 
   return (
     <>
-      <div className="border-l-4 border-y-2 border-r-2  rounded-md gap-7 border-red-500  flex flex-row h-3/4 p-3 items-center  relative text-gray-900 dark:text-gray-50">
+      <div className="border-l-4 border-y-2 border-r-2  rounded-md gap-7 border-red-500  flex flex-row h-3/4 p-3 items-center  relative text-gray-800 dark:text-gray-50">
         <p className=" text-sm font-medium">{props.desc}</p>
         <div className="flex justify-end gap-2 absolute right-2">
           <button className="w-7 flex justify-center items-center" onClick={onPlay}>
