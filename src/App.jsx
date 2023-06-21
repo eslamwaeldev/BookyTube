@@ -32,7 +32,7 @@ function App() {
   return isYoutube ? (
     videoTab ? (
       bookmarks.length > 0 ? (
-        <div className="flex flex-col items-center p-4 w-full h-full dark:bg-gray-800 text-gray-900 dark:text-gray-50">
+        <div className="flex flex-col items-center p-4 w-full h-full bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-50">
           <h2 className="text-xl  font-bold">Your Bookmarks for this video</h2>
           <div className="grid grid-cols-1 gap-y-[0.2rem] p-4 w-full">
             {bookmarks.map((bookmark, index) => {
