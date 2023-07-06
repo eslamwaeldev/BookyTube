@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "1.1.2",
+  "version": "1.2.0",
   "name": "BookyTube",
   "description": "Saving timestamps in YT videos",
   "permissions": ["storage", "tabs", "scripting", "activeTab"],
@@ -19,10 +19,16 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "assets/bookmark.png",
-        "assets/play.png",
-        "assets/delete.png",
-        "assets/sadFace.png"
+        "public/images/bookmark.png",
+        "public/images/play.svg",
+        "public/images/delete.svg",
+        "public/images/share.svg",
+        "public/images/copyDark.svg",
+        "public/images/playDark.svg",
+        "public/images/deleteDark.svg",
+        "public/images/icon.png",
+        "public/images/sadFace.svg",
+        "public/images/bookmarkBtn.jpg"
       ],
       "matches": ["https://*.youtube.com/*"]
     }
