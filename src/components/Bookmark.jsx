@@ -18,22 +18,24 @@ export default function Bookmark(props) {
 
   const onShare = async () => {
     await navigator.clipboard.writeText(props.url.toString() + "&t=" + props.timeStamp);
-    console.log("copied");
   };
 
   return (
     <>
-      <div className="border-l-4 border-y-2 border-r-2  rounded-md gap-7 border-red-500  flex flex-row h-3/4 p-3 items-center  relative text-gray-800 dark:text-gray-50">
-        <p className=" text-sm font-medium">{props.desc}</p>
-        <div className="flex justify-end gap-2 absolute right-2">
-          <button className="w-7 flex justify-center items-center" onClick={onPlay}>
-            <img src="/assets/play.png"></img>
+      <div className="border-l-4 border-y-2 border-r-2  rounded-md gap-7 border-[#FF1616] dark:border-gray-50  flex w-full h-3/4 p-3 items-center justify-between relative text-gray-800 dark:text-[#C5BEBE]">
+        <p className=" text-sm font-normal">{props.desc}</p>
+        <div className="flex justify-end gap-2  ">
+          <button className=" flex justify-center items-center" onClick={onPlay}>
+            <img className="flex dark:hidden" src="/assets/play.svg"></img>
+            <img className="hidden dark:flex" src="/assets/playDark.svg"></img>
           </button>
-          <button className="w-5 flex justify-center items-center" onClick={onDelete}>
-            <img src="/assets/delete.png"></img>
+          <button className=" flex justify-center items-center" onClick={onShare}>
+            <img className="flex dark:hidden" src="/assets/share.svg"></img>
+            <img className="hidden dark:flex" src="/assets/copyDark.svg"></img>
           </button>
-          <button className="w-5 flex justify-center items-center" onClick={onShare}>
-            <img src="/assets/share.png"></img>
+          <button className=" flex justify-center items-center" onClick={onDelete}>
+            <img className="flex dark:hidden" src="/assets/delete.svg"></img>
+            <img className="hidden dark:flex" src="/assets/deleteDark.svg"></img>
           </button>
         </div>
       </div>
