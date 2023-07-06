@@ -63,21 +63,26 @@ const addNewBookmarkEventHandler = async () => {
   currentVideo = new URLSearchParams(window.location.href.split("?")[1]).get("v");
   const currentTime = youtubePlayer.currentTime;
   const bookmarkID = uuidv4();
+  const url = window.location.href;
+
   const newBookmark = {
+    id: bookmarkID,
     time: currentTime,
     desc: "Bookmark at " + getTime(currentTime),
-    id: bookmarkID,
+    videoUrl: url,
   };
   currentVideoBookmarks = await fetchBookmarks();
-  chrome.storage.sync.set({
-    [currentVideo]: JSON.stringify(
-      currentVideoBookmarks.length > 0
-        ? [...currentVideoBookmarks, newBookmark].sort((a, b) => a.time - b.time)
-        : [newBookmark]
-    ),
-  });
-  currentVideoBookmarks = await fetchBookmarks();
-  console.log(currentVideoBookmarks);
+  const isRepeated = currentVideoBookmarks.find((bookmark) => bookmark.time === newBookmark.time);
+  if (!isRepeated) {
+    chrome.storage.sync.set({
+      [currentVideo]: JSON.stringify(
+        currentVideoBookmarks.length > 0
+          ? [...currentVideoBookmarks, newBookmark].sort((a, b) => a.time - b.time)
+          : [newBookmark]
+      ),
+    });
+    currentVideoBookmarks = await fetchBookmarks();
+  }
 };
 
 newVideoLoaded();
