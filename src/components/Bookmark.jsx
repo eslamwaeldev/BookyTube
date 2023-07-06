@@ -16,6 +16,11 @@ export default function Bookmark(props) {
     });
   };
 
+  const onShare = async () => {
+    await navigator.clipboard.writeText(props.url.toString() + "&t=" + props.timeStamp);
+    console.log("copied");
+  };
+
   return (
     <>
       <div className="border-l-4 border-y-2 border-r-2  rounded-md gap-7 border-red-500  flex flex-row h-3/4 p-3 items-center  relative text-gray-800 dark:text-gray-50">
@@ -26,6 +31,9 @@ export default function Bookmark(props) {
           </button>
           <button className="w-5 flex justify-center items-center" onClick={onDelete}>
             <img src="/assets/delete.png"></img>
+          </button>
+          <button className="w-5 flex justify-center items-center" onClick={onShare}>
+            <img src="/assets/share.png"></img>
           </button>
         </div>
       </div>
