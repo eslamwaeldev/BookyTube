@@ -26,9 +26,7 @@
         "public/images/copyDark.svg",
         "public/images/playDark.svg",
         "public/images/deleteDark.svg",
-        "public/images/icon.png",
-        "public/images/sadFace.svg",
-        "public/images/bookmarkBtn.jpg"
+        "public/images/sadFace.png"
       ],
       "matches": ["https://*.youtube.com/*"]
     }
@@ -36,9 +34,9 @@
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "16": "public/assets/icon.png",
-      "24": "public/assets/icon.png",
-      "32": "public/assets/icon.png"
+      "16": "public/images/icon.png",
+      "24": "public/images/icon.png",
+      "32": "public/images/icon.png"
     },
     "default_title": "BookyTube"
   }
