@@ -42,6 +42,7 @@ function App() {
                   timeStamp={bookmark.time}
                   desc={bookmark.desc}
                   id={bookmark.id}
+                  url={bookmark.videoUrl}
                 />
               );
             })}
