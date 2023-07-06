@@ -66,7 +66,7 @@ function App() {
     <>
       <div className="flex flex-col justify-center items-center p-5 dark:bg-[#254255] text-gray-900 dark:text-gray-50">
         <h2 className="text-xl  font-bold ">This is not a youtube page !</h2>
-        <img src="/assets/sadFace.png" alt="sad face" className="h-44 w-44 " />
+        <img src="/images/sadFace.png" alt="sad face" className="h-44 w-44 " />
       </div>
     </>
   );

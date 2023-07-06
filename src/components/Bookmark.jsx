@@ -26,16 +26,16 @@ export default function Bookmark(props) {
         <p className=" text-sm font-normal">{props.desc}</p>
         <div className="flex justify-end gap-2  ">
           <button className=" flex justify-center items-center" onClick={onPlay}>
-            <img className="flex dark:hidden" src="/assets/play.svg"></img>
-            <img className="hidden dark:flex" src="/assets/playDark.svg"></img>
+            <img className="flex dark:hidden" src="/images/play.svg"></img>
+            <img className="hidden dark:flex" src="/images/playDark.svg"></img>
           </button>
           <button className=" flex justify-center items-center" onClick={onShare}>
-            <img className="flex dark:hidden" src="/assets/share.svg"></img>
-            <img className="hidden dark:flex" src="/assets/copyDark.svg"></img>
+            <img className="flex dark:hidden" src="/images/share.svg"></img>
+            <img className="hidden dark:flex" src="/images/copyDark.svg"></img>
           </button>
           <button className=" flex justify-center items-center" onClick={onDelete}>
-            <img className="flex dark:hidden" src="/assets/delete.svg"></img>
-            <img className="hidden dark:flex" src="/assets/deleteDark.svg"></img>
+            <img className="flex dark:hidden" src="/images/delete.svg"></img>
+            <img className="hidden dark:flex" src="/images/deleteDark.svg"></img>
           </button>
         </div>
       </div>
