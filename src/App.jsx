@@ -33,7 +33,10 @@ function App() {
     videoTab ? (
       bookmarks.length > 0 ? (
         <div className="flex flex-col items-center p-2 w-full h-full bg-gray-50 dark:bg-[#254255] text-gray-900 dark:text-gray-50 ">
-          <h2 className="text-xl w-full text-center font-semibold">
+          <h2
+            style={{ textShadow: "1px 1px 2px black" }}
+            className="text-xl w-full text-center font-semibold"
+          >
             Your Bookmarks for this video
           </h2>
           <div className="grid grid-cols-1 gap-y-[0.2rem] p-3 w-full">
@@ -52,20 +55,24 @@ function App() {
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center text-center h-full w-full dark:dark:bg-[#254255] text-gray-900 dark:text-gray-50 p-4 ">
-          <h2 className="text-xl  font-bold italic ">
+          <h2 style={{ textShadow: "1px 1px 2px black" }} className="text-xl font-bold">
             There are no bookmarks added for this video
           </h2>
         </div>
       )
     ) : (
       <div className="flex flex-col justify-center items-center text-center h-full w-full dark:bg-[#254255] text-gray-900 dark:text-gray-50">
-        <h2 className="text-xl  font-bold italic ">Open a Video to load it's bookmarks</h2>
+        <h2 style={{ textShadow: "1px 1px 2px black" }} className="text-xl font-bold">
+          Open a Video to load it's bookmarks
+        </h2>
       </div>
     )
   ) : (
     <>
       <div className="flex flex-col justify-center items-center p-5 dark:bg-[#254255] text-gray-900 dark:text-gray-50">
-        <h2 className="text-xl  font-bold ">This is not a youtube page !</h2>
+        <h2 style={{ textShadow: "1px 1px 2px black" }} className="text-xl font-bold">
+          This is not a youtube page !
+        </h2>
         <img src="/images/sadFace.png" alt="sad face" className="h-44 w-44 " />
       </div>
     </>
