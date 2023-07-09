@@ -47,7 +47,7 @@ const newVideoLoaded = async () => {
     const bookmarkBtn = document.createElement("button");
     const bookmarkBtnImg = document.createElement("img");
     bookmarkBtnImg.className = "bookmark-btn-img";
-    bookmarkBtnImg.src = chrome.runtime.getURL("images/bookmark.png");
+    bookmarkBtnImg.src = chrome.runtime.getURL("./public/images/bookmark.png");
     bookmarkBtn.id = "BookyTube-btn";
     bookmarkBtn.className = "ytp-button " + "bookmark-btn";
     bookmarkBtnImg.title = "Click to bookmark current timestamp";
