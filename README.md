@@ -1,20 +1,9 @@
 # BookyTube
 
 
-# A chrome extension that allows you to bookmark timestamps from any Youtube video
+### A chrome extension that allows you to bookmark timestamps from any Youtube video
 
-## To run on your Chrome browser
-
-
-Clone the project
-
-```bash
-  git clone https://github.com/eslamwaeldev/BookyTube
-```
-- Open Chrome broweser
-- Go to extention Tab
-- Enable Developer mode
-- Drag the dist file from the cloned project and then drop in the extention tab 
+# Download from chrome web store [BookyTube page](https://chrome.google.com/webstore/detail/bookytube/jmidlebelfilbocekhbakbfafmgiimad)
 
 ## Preview
 
