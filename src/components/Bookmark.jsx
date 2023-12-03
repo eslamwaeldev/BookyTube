@@ -17,7 +17,7 @@ export default function Bookmark(props) {
   };
 
   const onShare = async () => {
-    await navigator.clipboard.writeText(props.url.toString() + "&t=" + props.timeStamp);
+    await navigator.clipboard.writeText(props.url.toString() + "&t=" + props.timeStamp + "s");
   };
 
   return (
