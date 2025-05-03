@@ -1,42 +1,45 @@
 {
   "manifest_version": 3,
-  "version": "1.2.1",
+  "version": "2.0.0",
   "name": "BookyTube",
   "description": "Saving timestamps in YT videos",
   "permissions": ["storage", "tabs", "scripting", "activeTab"],
   "host_permissions": ["https://*.youtube.com/*"],
   "background": {
-    "service_worker": "src/background.js",
+    "service_worker": "src/background.ts",
     "type": "module"
   },
   "content_scripts": [
     {
-      "js": ["contentScript.js"],
+      "js": ["contentScript.ts"],
       "matches": ["https://*/*", "http://*/*"],
-      "all_frames": true
+      "all_frames": true,
+      "run_at": "document_start",
+      "type": "module"
     }
   ],
   "web_accessible_resources": [
     {
       "resources": [
-        "public/images/bookmark.png",
-        "public/images/play.svg",
-        "public/images/delete.svg",
-        "public/images/share.svg",
-        "public/images/copyDark.svg",
-        "public/images/playDark.svg",
-        "public/images/deleteDark.svg",
-        "public/images/sadFace.png"
+        "images/bookmark.png",
+        "images/play.svg",
+        "images/delete.svg",
+        "images/share.svg",
+        "images/copyDark.svg",
+        "images/playDark.svg",
+        "images/deleteDark.svg",
+        "images/sadFace.png",
+        "contentScript.ts"
       ],
-      "matches": ["https://*.youtube.com/*"]
+      "matches": ["http://*/*", "https://*/*"]
     }
   ],
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "16": "public/images/icon.png",
-      "24": "public/images/icon.png",
-      "32": "public/images/icon.png"
+      "16": "images/icon.png",
+      "24": "images/icon.png",
+      "32": "images/icon.png"
     },
     "default_title": "BookyTube"
   }
