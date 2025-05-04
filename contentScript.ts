@@ -5,7 +5,6 @@ import { Bookmark } from "./src/schema";
 import "./contentScript.css";
 
 (async () => {
-  const tabURL = window.location.href.includes("www.youtube.com");
   const isThereAYoutubeVideo = Array.from(document.getElementsByTagName("iframe")).filter(
     (iframe) => {
       return iframe.src.includes("www.youtube.com");
@@ -117,9 +116,8 @@ import "./contentScript.css";
       currentVideoBookmarks = await fetchBookmarks();
     }
   };
-  if (tabURL || isThereAYoutubeVideo.length > 0) {
-    newVideoLoaded();
-  }
+
+  newVideoLoaded();
 
   const getTime = (t: number) => {
     const date = new Date(0);
