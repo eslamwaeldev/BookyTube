@@ -12,18 +12,9 @@ const VideoBookmarks = ({ bookmarks }: Props) => {
         Your Bookmarks for this video
       </h2>
       <div className="grid grid-cols-1 gap-y-0.2 p-3 w-full">
-        {bookmarks.map(({ description, id, time, videoURl }, index) => {
-          return (
-            <BookmarkEntry
-              key={index}
-              time={time}
-              description={description}
-              id={id}
-              videoURl={videoURl}
-            />
-          );
+        {bookmarks.map(({ desc, id, time, videoURl }, index) => {
+          return <BookmarkEntry key={index} time={time} desc={desc} id={id} videoURl={videoURl} />;
         })}
-        ;
       </div>
     </div>
   );
