@@ -21,7 +21,6 @@ const usePageControls = (): Controls => {
   const [currentVideoId, setCurrentVideoId] = useState<string>("");
   const [urlParams, setUrlParams] = useState<URLSearchParams>(new URLSearchParams());
   const [stop, setStop] = useState<boolean>(true);
-  console.log("🚀 ~ usePageControls ~ stop:", stop);
 
   chrome.runtime.onMessage.addListener((obj) => {
     const { type, videoID } = obj;
@@ -36,18 +35,18 @@ const usePageControls = (): Controls => {
     const { url } = await getCurrentTab();
     const queryParams = url?.split("?")[1];
     const params = new URLSearchParams(queryParams);
+    if (url?.includes("www.youtube.com")) setStop(false);
     if (!stop) {
       setUrlParams(params);
-      if (url?.includes("www.youtube.com")) {
-        if (params.get("v")) {
-          setYoutubePage(true);
-          setCurrentVideoId(params.get("v") as string);
-        } else {
-          setYoutubePage(true);
-        }
+      if (params.get("v")) {
+        setYoutubePage(true);
+        setCurrentVideoId(params.get("v") as string);
+      } else {
+        setYoutubePage(true);
       }
     }
   };
+
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
       console.log("i am sent");
