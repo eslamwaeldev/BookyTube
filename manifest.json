@@ -13,7 +13,7 @@
     {
       "js": ["contentScript.ts"],
       "matches": ["https://*/*", "http://*/*"],
-      "all_frames": true,
+      "all_frames": false,
       "run_at": "document_start",
       "type": "module"
     }
