@@ -4,8 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Bookmark } from "./src/schema";
 import "./contentScript.css";
 
-window.addEventListener("load", () => {
-  console.log("Load Event triggered");
+(async () => {
   const tabURL = window.location.href.includes("www.youtube.com");
   const isThereAYoutubeVideo = Array.from(document.getElementsByTagName("iframe")).filter(
     (iframe) => {
@@ -18,10 +17,9 @@ window.addEventListener("load", () => {
       type: "Youtube Video Found",
       videoID: isThereAYoutubeVideo[0].src.split("/")[4],
     });
-    console.log("I am executed");
   }
 
-  let youtubeRightControls, youtubePlayer: HTMLVideoElement;
+  let youtubeRightControls: Element, youtubePlayer: HTMLVideoElement;
   let currentVideo: string = new URLSearchParams(window.location.href.split("?")[1]).get("v") || "";
   let currentVideoBookmarks: Bookmark[] = [];
 
@@ -30,14 +28,13 @@ window.addEventListener("load", () => {
       const { type, value, videoId } = obj;
       switch (type) {
         case "Popup opened":
-          console.log("Popup opened");
           if (isThereAYoutubeVideo.length > 0) {
             chrome.runtime.sendMessage({
               type: "Youtube Video Found",
               videoID: isThereAYoutubeVideo[0].src.split("/")[4],
             });
-            console.log("I am executed");
           }
+          newVideoLoaded();
           break;
         case "NEW":
           currentVideo = videoId;
@@ -69,7 +66,6 @@ window.addEventListener("load", () => {
     if (currentVideo) {
       if (currentVideo) {
         const getCurrentBookmarks = await chrome.storage.sync.get([currentVideo]);
-        console.log("🚀 ~ fetchBookmarks ~ getCurrentBookmarks:", getCurrentBookmarks);
         if (Object.keys(getCurrentBookmarks).length > 0) {
           return await JSON.parse(getCurrentBookmarks[currentVideo]);
         } else return [];
@@ -130,4 +126,4 @@ window.addEventListener("load", () => {
     date.setSeconds(t);
     return date.toISOString().substring(11, 18);
   };
-});
+})();
