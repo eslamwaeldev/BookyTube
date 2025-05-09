@@ -49,7 +49,6 @@ const usePageControls = (): Controls => {
 
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
-      console.log("i am sent");
       const { id } = tabs[0];
       chrome.tabs.sendMessage(id as number, { type: "Popup opened" });
     });
