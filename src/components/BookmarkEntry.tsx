@@ -1,6 +1,6 @@
 import { Bookmark } from "../schema";
 
-const BookmarkEntry = ({ id, desc, time, videoURl }: Bookmark) => {
+const BookmarkEntry = ({ desc }: Bookmark) => {
   return (
     <div className="w-full rounded-full border-2 border-red-500 min-h-6 flex items-center justify-between p-2">
       <h1 className="font-medium text-sm">{desc}</h1>
